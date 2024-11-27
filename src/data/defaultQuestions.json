@@ -1,0 +1,256 @@
+{
+  "dateGenerated": "2024-11-26T12:34:56Z",
+  "category": "Computer Science",
+  "questions": [
+    {
+      "category": "Data Structures",
+      "question": "What is the time complexity of finding an element in a balanced binary search tree?",
+      "choices": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+      "answer": "O(log n)",
+      "difficulty": "medium",
+      "explanation": "In a balanced binary search tree, each comparison eliminates half of the remaining nodes, resulting in logarithmic time complexity. The height of a balanced BST is log n, and we traverse at most one level at each step."
+    },
+    {
+      "category": "Algorithms",
+      "question": "Which sorting algorithm has the best average-case time complexity?",
+      "choices": [
+        "Bubble Sort",
+        "Quick Sort",
+        "Insertion Sort",
+        "Selection Sort"
+      ],
+      "answer": "Quick Sort",
+      "difficulty": "medium",
+      "explanation": "Quick Sort has an average time complexity of O(n log n) and performs well in practice due to good cache locality and in-place sorting. While Merge Sort also has O(n log n), Quick Sort generally performs better on average due to smaller constant factors."
+    },
+    {
+      "category": "Web Development",
+      "question": "What is the purpose of React's useEffect hook?",
+      "choices": [
+        "To handle state in functional components",
+        "To perform side effects in functional components",
+        "To create custom hooks",
+        "To optimize component rendering"
+      ],
+      "answer": "To perform side effects in functional components",
+      "difficulty": "medium",
+      "explanation": "useEffect is designed for handling side effects like data fetching, subscriptions, or DOM manipulations. It runs after render and can clean up previous effects, making it ideal for managing component lifecycle behaviors in functional components."
+    },
+    {
+      "category": "Programming Concepts",
+      "question": "What is the difference between null and undefined in JavaScript?",
+      "choices": [
+        "They are exactly the same",
+        "null is assigned by JavaScript, undefined by developers",
+        "undefined represents unintentional absence of value, null represents intentional absence",
+        "null is an object, undefined is not defined at all"
+      ],
+      "answer": "undefined represents unintentional absence of value, null represents intentional absence",
+      "difficulty": "hard",
+      "explanation": "undefined indicates a variable has been declared but not assigned a value, while null is an explicit assignment indicating absence of value. This distinction helps in debugging and understanding code behavior."
+    },
+    {
+      "category": "Database",
+      "question": "What is the primary purpose of database indexing?",
+      "choices": [
+        "To encrypt data",
+        "To speed up data retrieval operations",
+        "To compress data",
+        "To validate data integrity"
+      ],
+      "answer": "To speed up data retrieval operations",
+      "difficulty": "easy",
+      "explanation": "Indexes create a data structure that allows faster data retrieval by creating pointers to rows in a database table, similar to how a book's index helps quickly find specific pages."
+    },
+    {
+      "category": "Security",
+      "question": "What is Cross-Site Scripting (XSS)?",
+      "choices": [
+        "A type of SQL injection",
+        "A client-side injection attack",
+        "A server configuration error",
+        "A network protocol"
+      ],
+      "answer": "A client-side injection attack",
+      "difficulty": "medium",
+      "explanation": "XSS is a security vulnerability where attackers inject malicious scripts into web pages viewed by others. It's client-side because the injected code executes in victims' browsers."
+    },
+    {
+      "category": "Data Structures",
+      "question": "What is the main advantage of using a hash table?",
+      "choices": [
+        "Ordered data storage",
+        "Constant time average case for insertions and lookups",
+        "Memory efficiency",
+        "Maintaining relationships between data"
+      ],
+      "answer": "Constant time average case for insertions and lookups",
+      "difficulty": "medium",
+      "explanation": "Hash tables provide O(1) average time complexity for insertions and lookups through direct addressing using a hash function, making them extremely efficient for these operations."
+    },
+    {
+      "category": "Programming Concepts",
+      "question": "What is a pure function?",
+      "choices": [
+        "A function that only uses pure JavaScript",
+        "A function without parameters",
+        "A function that always returns the same output for same inputs and has no side effects",
+        "A function that only returns boolean values"
+      ],
+      "answer": "A function that always returns the same output for same inputs and has no side effects",
+      "difficulty": "medium",
+      "explanation": "Pure functions are deterministic (same input always yields same output) and have no side effects, making code more predictable, testable, and easier to reason about."
+    },
+    {
+      "category": "Architecture",
+      "question": "What is the primary benefit of microservices architecture?",
+      "choices": [
+        "Simpler deployment process",
+        "Lower infrastructure costs",
+        "Independent scaling and deployment of services",
+        "Easier debugging"
+      ],
+      "answer": "Independent scaling and deployment of services",
+      "difficulty": "hard",
+      "explanation": "Microservices allow teams to develop, deploy, and scale services independently, improving agility and resource utilization by scaling only the components that need it."
+    },
+    {
+      "category": "Web Development",
+      "question": "What is the purpose of the Virtual DOM in React?",
+      "choices": [
+        "To create virtual web pages",
+        "To optimize memory usage",
+        "To minimize actual DOM manipulation for better performance",
+        "To handle virtual reality applications"
+      ],
+      "answer": "To minimize actual DOM manipulation for better performance",
+      "difficulty": "medium",
+      "explanation": "The Virtual DOM creates a lightweight copy of the actual DOM, calculates the minimal number of changes needed, and then efficiently updates the real DOM, reducing expensive DOM manipulations."
+    },
+    {
+      "category": "Testing",
+      "question": "What is the primary purpose of unit testing?",
+      "choices": [
+        "To test the entire application",
+        "To verify individual components work as expected in isolation",
+        "To test user interface",
+        "To measure application performance"
+      ],
+      "answer": "To verify individual components work as expected in isolation",
+      "difficulty": "easy",
+      "explanation": "Unit tests focus on testing individual components or functions in isolation to ensure each part of the code works correctly before integration with other components."
+    },
+    {
+      "category": "Version Control",
+      "question": "What is a Git rebase?",
+      "choices": [
+        "Copying a repository",
+        "Creating a new branch",
+        "Reorganizing commits to maintain a linear project history",
+        "Reverting changes"
+      ],
+      "answer": "Reorganizing commits to maintain a linear project history",
+      "difficulty": "hard",
+      "explanation": "Rebase reorganizes commit history by moving commits to a new base commit, creating a linear history that's cleaner and easier to follow than merge commits."
+    },
+    {
+      "category": "Programming Concepts",
+      "question": "What is callback hell?",
+      "choices": [
+        "A programming language",
+        "A type of software bug",
+        "Deeply nested callbacks making code hard to maintain",
+        "A testing framework"
+      ],
+      "answer": "Deeply nested callbacks making code hard to maintain",
+      "difficulty": "medium",
+      "explanation": "Callback hell occurs when multiple asynchronous operations are nested within each other, making code difficult to read and maintain. Modern solutions include Promises and async/await."
+    },
+    {
+      "category": "Security",
+      "question": "What is the purpose of HTTPS?",
+      "choices": [
+        "To make websites load faster",
+        "To compress data",
+        "To secure data transmission between client and server",
+        "To improve SEO rankings"
+      ],
+      "answer": "To secure data transmission between client and server",
+      "difficulty": "easy",
+      "explanation": "HTTPS encrypts data transmitted between client and server, preventing man-in-the-middle attacks and ensuring data integrity and confidentiality."
+    },
+    {
+      "category": "Database",
+      "question": "What is a database transaction?",
+      "choices": [
+        "A financial operation",
+        "A unit of work that is atomic, consistent, isolated, and durable",
+        "A database query",
+        "A backup operation"
+      ],
+      "answer": "A unit of work that is atomic, consistent, isolated, and durable",
+      "difficulty": "medium",
+      "explanation": "A transaction is a sequence of operations treated as a single unit of work, following ACID properties to ensure data integrity even in case of system failures."
+    },
+    {
+      "category": "Algorithms",
+      "question": "What is the space complexity of recursive fibonacci implementation?",
+      "choices": ["O(1)", "O(n)", "O(log n)", "O(2^n)"],
+      "answer": "O(n)",
+      "difficulty": "hard",
+      "explanation": "The space complexity is O(n) due to the call stack depth in recursion. Each recursive call adds a new frame to the stack, with maximum depth n for calculating fibonacci(n)."
+    },
+    {
+      "category": "Web Development",
+      "question": "What is the purpose of CSS BEM methodology?",
+      "choices": [
+        "To minify CSS",
+        "To create responsive designs",
+        "To provide a naming convention for maintainable CSS",
+        "To optimize CSS loading"
+      ],
+      "answer": "To provide a naming convention for maintainable CSS",
+      "difficulty": "medium",
+      "explanation": "BEM (Block Element Modifier) provides a structured naming convention for CSS classes, making styles more maintainable, reusable, and easier to understand in large projects."
+    },
+    {
+      "category": "Architecture",
+      "question": "What is the Single Responsibility Principle?",
+      "choices": [
+        "Each project should have one developer responsible",
+        "A class should have only one reason to change",
+        "Each function should have only one parameter",
+        "Every module should be responsible for everything"
+      ],
+      "answer": "A class should have only one reason to change",
+      "difficulty": "medium",
+      "explanation": "The Single Responsibility Principle states that a class should have only one reason to change, promoting high cohesion, better maintainability, and clearer separation of concerns."
+    },
+    {
+      "category": "Programming Concepts",
+      "question": "What is the difference between compilation and interpretation?",
+      "choices": [
+        "There is no difference",
+        "Compilation is faster than interpretation",
+        "Compilation translates code to machine code before execution, interpretation executes code directly",
+        "Compilation is only for web applications"
+      ],
+      "answer": "Compilation translates code to machine code before execution, interpretation executes code directly",
+      "difficulty": "easy",
+      "explanation": "Compilers translate entire programs to machine code before execution, while interpreters read and execute code line by line. This fundamental difference affects performance, portability, and development workflow."
+    },
+    {
+      "category": "Testing",
+      "question": "What is Test-Driven Development (TDD)?",
+      "choices": [
+        "Writing tests after implementation",
+        "Not writing tests at all",
+        "Writing tests before implementing functionality",
+        "Testing only in production"
+      ],
+      "answer": "Writing tests before implementing functionality",
+      "difficulty": "medium",
+      "explanation": "TDD involves writing tests before implementation, following the red-green-refactor cycle. This approach helps ensure code meets requirements and maintains high test coverage from the start."
+    }
+  ]
+}

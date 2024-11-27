@@ -1,0 +1,47 @@
+{
+  "id": "9f6c12e3-1083-44a7-8dd2-27a348f1126f",
+  "dateGenerated": 1732693324,
+  "name": "Castlevania Lore Master",
+  "category": "Video Games",
+  "questions": [
+    {
+      "category": "characters",
+      "difficulty": "medium",
+      "question": "Which Belmont first defeated Dracula in 1094 according to the timeline?",
+      "choices": [
+        "Trevor Belmont",
+        "Simon Belmont",
+        "Leon Belmont",
+        "Richter Belmont"
+      ],
+      "answer": "Leon Belmont",
+      "explanation": "Leon Belmont was the first of the Belmont clan to face evil, founding the family's vampire-hunting legacy in Castlevania: Lament of Innocence."
+    },
+    {
+      "category": "items",
+      "difficulty": "hard",
+      "question": "What is the sacred whip used by the Belmont clan called?",
+      "choices": [
+        "Morning Star",
+        "Holy Chain",
+        "Vampire Killer",
+        "Sacred Lash"
+      ],
+      "answer": "Vampire Killer",
+      "explanation": "The Vampire Killer is a legendary whip created from alchemy and Sara Trantoul's soul, passed down through generations of Belmonts."
+    },
+    {
+      "category": "story",
+      "difficulty": "hard",
+      "question": "In Symphony of the Night, what is Alucard's real name?",
+      "choices": [
+        "Adrian Fahrenheit Țepeș",
+        "Mathias Cronqvist",
+        "Trevor Belmont",
+        "Gabriel Belmont"
+      ],
+      "answer": "Adrian Fahrenheit Țepeș",
+      "explanation": "Alucard's birth name is Adrian Fahrenheit Țepeș, son of Dracula and Lisa Țepeș. He chose the name Alucard (Dracula spelled backwards) to show his opposition to his father's actions."
+    }
+  ]
+}

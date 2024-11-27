@@ -1,0 +1,47 @@
+{
+  "id": "35fa0d36-2356-48e7-9ad8-27d8e2ac5b1d",
+  "dateGenerated": 1732693286,
+  "name": "Metroidvania Mastery",
+  "category": "Video Games",
+  "questions": [
+    {
+      "category": "game-mechanics",
+      "difficulty": "medium",
+      "question": "What gameplay feature is most characteristic of the Metroidvania genre?",
+      "choices": [
+        "Turn-based combat",
+        "Ability-gated exploration",
+        "Multiple endings",
+        "Multiplayer modes"
+      ],
+      "answer": "Ability-gated exploration",
+      "explanation": "Metroidvania games are defined by acquiring new abilities that allow access to previously unreachable areas."
+    },
+    {
+      "category": "history",
+      "difficulty": "hard",
+      "question": "Which two game series combined to create the term 'Metroidvania'?",
+      "choices": [
+        "Metroid and Castlevania",
+        "Metal Gear and Megavania",
+        "Metro and Transilvania",
+        "Mega Man and Sylvanian"
+      ],
+      "answer": "Metroid and Castlevania",
+      "explanation": "The term combines Metroid and Castlevania: Symphony of the Night, which established the genre's core elements."
+    },
+    {
+      "category": "modern-games",
+      "difficulty": "medium",
+      "question": "Which acclaimed indie Metroidvania features a knight exploring a kingdom of insects?",
+      "choices": [
+        "Dead Cells",
+        "Hollow Knight",
+        "Ori and the Blind Forest",
+        "Axiom Verge"
+      ],
+      "answer": "Hollow Knight",
+      "explanation": "Hollow Knight (2017) by Team Cherry takes place in Hallownest, a fallen kingdom of insects and features classic Metroidvania exploration."
+    }
+  ]
+}

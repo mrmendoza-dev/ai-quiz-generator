@@ -1,0 +1,47 @@
+{
+  "id": "dc845146-3298-4c18-9a0b-469fd313471c",
+  "dateGenerated": 1732693039,
+  "name": "Intro to Astrology",
+  "category": "Astrology",
+  "questions": [
+    {
+      "category": "zodiac",
+      "difficulty": "medium",
+      "question": "Which zodiac sign is represented by the twins?",
+      "choices": [
+        "Gemini",
+        "Pisces",
+        "Libra",
+        "Cancer"
+      ],
+      "answer": "Gemini",
+      "explanation": "Gemini is symbolized by the twins Castor and Pollux from Greek mythology, representing duality and communication."
+    },
+    {
+      "category": "planets",
+      "difficulty": "medium",
+      "question": "What planet is traditionally associated with love and beauty in astrology?",
+      "choices": [
+        "Mars",
+        "Venus",
+        "Jupiter",
+        "Mercury"
+      ],
+      "answer": "Venus",
+      "explanation": "Venus is the planet of love, beauty, art, and harmony in astrological traditions."
+    },
+    {
+      "category": "houses",
+      "difficulty": "hard",
+      "question": "The Seventh House in astrology primarily relates to what?",
+      "choices": [
+        "Career and public image",
+        "Partnerships and marriage",
+        "Home and family",
+        "Spirituality and dreams"
+      ],
+      "answer": "Partnerships and marriage",
+      "explanation": "The Seventh House governs partnerships, marriage, business relationships, and open enemies."
+    }
+  ]
+}
