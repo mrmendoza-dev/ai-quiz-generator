@@ -17,7 +17,7 @@ type QuizData = {
   questions: Question[];
 };
 
-export default function QuizApp() {
+export default function QuizPage() {
   const [quizData, setQuizData] = useState<QuizData | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);

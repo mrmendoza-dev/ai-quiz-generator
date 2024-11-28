@@ -4,11 +4,9 @@ import { useNavigate } from "react-router-dom";
 const PORT = import.meta.env.VITE_PORT;
 
 const HomePage = () => {
-  const [difficulty, setDifficulty] = useState("medium");
-  const [topic, setTopic] = useState("general");
-  const [isStarted, setIsStarted] = useState(false);
   const [quizzes, setQuizzes] = useState([]);
    const navigate = useNavigate();
+
 
 
   useEffect(() => {
@@ -21,18 +19,7 @@ const HomePage = () => {
     setQuizzes(data);
   };
 
-  const generateQuiz = async () => {
-    const response = await fetch(`http://localhost:${PORT}/api/quiz/generate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic, difficulty }),
-    });
-    const quiz = await response.json();
-    setIsStarted(true);
-    fetchQuizzes();
-  };
 
-  
 
 
    const handleQuizSelect = (quizId: string) => {
@@ -49,98 +36,167 @@ const HomePage = () => {
         </h1>
       </div>
 
-      {/* Quick Start */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md p-6">
-        <button
-          className="w-full px-4 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 font-bold text-lg"
-          // onClick={() => setIsStarted(true)}
-          onClick={() => handleQuizSelect("default")}
-        >
-          Start Default Quiz
-        </button>
-      </div>
 
-      {/* Quiz Settings */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md p-6 space-y-4">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-          Custom Quiz Settings
-        </h2>
+      <QuizGeneratorForm fetchQuizzes={fetchQuizzes} />
 
-        <div className="space-y-2">
-          <label className="block text-gray-700 dark:text-gray-300">
-            Difficulty
-          </label>
-          <select
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value)}
-            className="w-full p-2 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-          >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-        </div>
 
-        <div className="space-y-2">
-          <label className="block text-gray-700 dark:text-gray-300">
-            Topic
-          </label>
-          <select
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            className="w-full p-2 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
-          >
-            <option value="general">General Knowledge</option>
-            <option value="science">Science</option>
-            <option value="history">History</option>
-            <option value="geography">Geography</option>
-            <option value="tech">Technology</option>
-          </select>
-        </div>
-
-        <button
-          className="w-full px-4 py-3 bg-green-600 dark:bg-green-500 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-600"
-          onClick={generateQuiz}
-        >
-          Start Custom Quiz
-        </button>
-      </div>
-
-      {/* Generated Quizzes List */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md p-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-          Generated Quizzes
-        </h2>
-        <div className="space-y-3">
-          {quizzes.map((quiz: any, index: number) => (
-            <div
-              key={index}
-              onClick={() => handleQuizSelect(quiz.id)}
-              className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
-            >
-              <div className="flex justify-between items-center">
-                <h3 className="font-semibold text-gray-900 dark:text-white">
-                  {quiz.name}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {quiz.category}
-                </p>
-              </div>
-              <div className="flex justify-between">
-                <p className="text-sm text-gray-500 dark:text-gray-500">
-                  Generated:{" "}
-                  {new Date(quiz.dateGenerated * 1000).toLocaleDateString()}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-500">
-                  {quiz.length} questions
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <QuizList quizzes={quizzes} handleQuizSelect={handleQuizSelect} />
     </div>
   );
 };
 
 export default HomePage;
+
+
+
+
+
+
+
+function QuizGeneratorForm({ fetchQuizzes }: { fetchQuizzes: () => void }) {
+
+  const [topicDescription, setTopicDescription] = useState("");
+  const [details, setDetails] = useState("");
+  const [numQuestions, setNumQuestions] = useState(5);
+  const [difficulty, setDifficulty] = useState("medium");
+
+
+    const generateQuiz = async () => {
+      const response = await fetch(
+        `http://localhost:${PORT}/api/quiz/generate`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            topic: topicDescription,
+            details,
+            numQuestions,
+            difficulty,
+          }),
+        }
+      );
+      const quiz = await response.json();
+      fetchQuizzes();
+    };
+  
+
+
+
+return (
+  <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md p-6 space-y-4">
+    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+      Custom Quiz Settings
+    </h2>
+
+    {/* Grid layout for two textareas */}
+    <div className="grid grid-cols-1 gap-4 mb-4">
+      <div className="space-y-2">
+        <label className="block text-gray-700 dark:text-gray-300">
+          Topic Description
+        </label>
+        <textarea
+          value={topicDescription}
+          onChange={(e) => setTopicDescription(e.target.value)}
+          className="w-full p-2 h-32 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
+          placeholder="Describe the quiz topic..."
+        />
+      </div>
+    </div>
+
+    {/* Controls row */}
+    <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="space-y-2">
+        <label className="block text-gray-700 dark:text-gray-300">
+          Number of Questions
+        </label>
+        <input
+          type="number"
+          min="1"
+          max="20"
+          value={numQuestions}
+          onChange={(e) => setNumQuestions(parseInt(e.target.value))}
+          className="w-full p-2 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
+        />
+      </div>
+      <div className="space-y-2">
+        <label className="block text-gray-700 dark:text-gray-300">
+          Difficulty
+        </label>
+        <select
+          value={difficulty}
+          onChange={(e) => setDifficulty(e.target.value)}
+          className="w-full p-2 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
+        >
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+    </div>
+
+    <button
+      className="w-full px-4 py-3 bg-green-600 dark:bg-green-500 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-600"
+      onClick={generateQuiz}
+    >
+      Generate Quiz
+    </button>
+  </div>
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+function QuizList({ quizzes, handleQuizSelect }: { quizzes: any[], handleQuizSelect: (quizId: string) => void }) {
+  return (
+    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md p-6">
+      <button
+        className="w-full mb-4 px-4 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 font-bold text-lg"
+        // onClick={() => setIsStarted(true)}
+        onClick={() => handleQuizSelect("default")}
+      >
+        Start Default Quiz
+      </button>
+
+      <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+        Generated Quizzes
+      </h2>
+      <div className="space-y-3">
+        {quizzes.map((quiz: any, index: number) => (
+          <div
+            key={index}
+            onClick={() => handleQuizSelect(quiz.id)}
+            className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+          >
+            <div className="flex justify-between items-center">
+              <h3 className="font-semibold text-gray-900 dark:text-white">
+                {quiz.name}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {quiz.category}
+              </p>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-sm text-gray-500 dark:text-gray-500">
+                Generated:{" "}
+                {new Date(quiz.dateGenerated * 1000).toLocaleDateString()}
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-500">
+                {quiz.length} questions
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
