@@ -1,114 +1,93 @@
-# Vite React Template
-Template built for React projects with Vite loaded with popular libraries and tools.
+# Quiz Generator App
 
-## Resources
-- [Favicon](https://favicon.io/)
-- [TailwindCSS](https://tailwindcss.com/docs/installation)
-- [Flowbite](https://flowbite.com/docs/getting-started/quickstart/)
-- [Vite](https://vitejs.dev/guide/)
-- [Favicon Creator](https://favicon.io/)
-- [Supabase](https://supabase.com/docs)
-- [Firebase](https://firebase.google.com/)
-- [Netlify](https://docs.netlify.com/)
+A web application that generates customized quizzes using AI. Create quizzes on any topic with customizable difficulty levels and number of questions.
 
-## TODO
-- Add HTML meta tags, SEO tags
-- Custom .gitigore
-- Basic server.js
+## Features
+- Custom quiz generation with GPT
+- Multiple difficulty levels (Easy, Medium, Hard, Mixed)
+- Customizable number of questions
+- Score tracking
+- Detailed explanations for answers
+- Dark/Light mode support
+- Saves generated quizzes for later use
 
+## Setup
 
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/quiz-generator.git
+cd quiz-generator
+```
 
+2. Install dependencies
+```bash
+npm install
+```
 
+3. Create a `.env` file in the root directory with the following variables:
+```env
+# Server port
+VITE_PORT=3060
 
-import { Configuration, OpenAIApi } from 'openai';
-import { z } from 'zod'; // Runtime type checking
+# OpenAI API credentials
+VITE_OPENAI_ORGANIZATION="your_organization_id"
+VITE_OPENAI_PROJECT="your_project_id"
+VITE_OPENAI_API_KEY="your_api_key"
+```
 
-// Define strict types for question structure
-const QuestionSchema = z.object({
-  question: z.string(),
-  correctAnswer: z.string(),
-  explanation: z.string(),
-  distractors: z.array(z.string()).length(3),
-  difficulty: z.enum(['easy', 'medium', 'hard']),
-  topic: z.string(),
-  subtopic: z.string().optional(),
-});
+4. Create required directories:
+```bash
+mkdir -p data/generated
+```
 
-type Question = z.infer<typeof QuestionSchema>;
+## Running the Application
 
-export class QuizGenerator {
-  private openai: OpenAIApi;
-  
-  constructor(apiKey: string) {
-    this.openai = new OpenAIApi(new Configuration({ apiKey }));
-  }
+Start both frontend and backend servers:
+```bash
+npm start
+```
 
-  async generateQuestions(topic: string, count: number): Promise<Question[]> {
-    // First, generate key concepts and answers
-    const conceptPrompt = `
-      Topic: ${topic}
-      Generate ${count} key concepts/facts that would make good quiz questions.
-      For each concept, provide:
-      1. The core fact/answer
-      2. Difficulty level (easy/medium/hard)
-      3. Related subtopic
-      Format as JSON array.
-    `;
+This will run:
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:3060`
 
-    const concepts = await this.getCompletionAsJson(conceptPrompt);
+## Development
 
-    // Then generate full questions based on these concepts
-    const questionsPrompt = concepts.map(concept => `
-      Create a multiple choice question where "${concept.fact}" is the correct answer.
-      Difficulty: ${concept.difficulty}
-      Subtopic: ${concept.subtopic}
-      
-      Requirements:
-      1. Question should test understanding, not just recall
-      2. Distractors should be plausible but clearly incorrect
-      3. Include a brief explanation of why the answer is correct
-      
-      Format as JSON with: question, correctAnswer, distractors (array of 3), explanation
-    `);
+Run frontend only:
+```bash
+npm run dev
+```
 
-    const questions = await Promise.all(
-      questionsPrompt.map(prompt => this.getCompletionAsJson(prompt))
-    );
+Run backend only:
+```bash
+npm run server
+```
 
-    // Validate and format questions
-    return questions.map((q, i) => ({
-      ...q,
-      topic,
-      difficulty: concepts[i].difficulty,
-      subtopic: concepts[i].subtopic,
-    })).filter(q => {
-      try {
-        QuestionSchema.parse(q);
-        return true;
-      } catch (e) {
-        console.error('Invalid question format:', e);
-        return false;
-      }
-    });
-  }
+## Project Structure
+```
+quiz-generator/
+├── src/               # Frontend source code
+├── server/            # Backend server code
+├── data/
+│   └── generated/    # Generated quiz files
+└── public/           # Static assets
+```
 
-  private async getCompletionAsJson(prompt: string) {
-    const completion = await this.openai.createChatCompletion({
-      model: "gpt-4",
-      messages: [{
-        role: "system",
-        content: "You are a subject matter expert creating educational content. Respond only with valid JSON."
-      }, {
-        role: "user",
-        content: prompt
-      }],
-      temperature: 0.7,
-    });
+## Environment Variables
 
-    return JSON.parse(completion.data.choices[0].message?.content || '[]');
-  }
-}
+| Variable | Description | Required |
+|----------|-------------|----------|
+| VITE_PORT | Backend server port | Yes |
+| VITE_OPENAI_ORGANIZATION | OpenAI Organization ID | Yes |
+| VITE_OPENAI_PROJECT | OpenAI Project ID | No |
+| VITE_OPENAI_API_KEY | OpenAI API Key | Yes |
 
-// Example usage
-const generator = new QuizGenerator(process.env.OPENAI_API_KEY!);
-const questions = await generator.generateQuestions('React Hooks', 5);
+## Tech Stack
+- React + Vite
+- Express.js
+- OpenAI API
+- TailwindCSS
+- Node.js
+
+## License
+MIT
