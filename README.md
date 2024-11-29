@@ -1,4 +1,4 @@
-# Quiz Generator App
+# AI Quiz Generator
 
 A web application that generates customized quizzes using AI. Create quizzes on any topic with customizable difficulty levels and number of questions.
 
