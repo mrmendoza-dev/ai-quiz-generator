@@ -1,7 +1,7 @@
-import { icons } from "@assets/icons";
+import { icons } from "@/assets/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { useApplicationShell } from "@contexts/ApplicationShellContext";
+import { useApplicationShell } from "@/contexts/ApplicationShellContext";
 
 function Sidebar() {
   const pages = [

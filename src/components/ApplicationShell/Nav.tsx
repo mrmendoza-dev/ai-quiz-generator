@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icons } from "@assets/icons";
+import { icons } from "@/assets/icons";
 import ThemeToggle from "./ThemeToggle";
 import { Link } from "react-router-dom";
-import { useApplicationShell } from "@contexts/ApplicationShellContext";
+import { useApplicationShell } from "@/contexts/ApplicationShellContext";
 
 
 function Nav() {
@@ -16,23 +16,23 @@ function Nav() {
       <nav className="Nav bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700">
         <div className="flex flex-wrap justify-between items-center">
           <div className="flex justify-start items-center">
-            <button
+            {/* <button
               className="mr-2 px-3 py-2 text-sm font-medium focus:outline-none rounded-md border hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-primary-700 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={() => {
                 setExpandedSidebar(!expandedSidebar);
               }}
             >
               <FontAwesomeIcon icon={icons.faBars} className="" />
-            </button>
+            </button> */}
 
             <Link to="/" className="flex items-center justify-between mr-4">
               <img
                 src="/images/logo.png"
-                className="mr-3 h-8"
+                className="mr-1 h-8"
                 alt="Flowbite Logo"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-black">
-                Quiz Generator
+                AI Quiz Generator
               </span>
             </Link>
           </div>

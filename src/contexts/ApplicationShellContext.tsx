@@ -1,5 +1,5 @@
 import React, { useContext, createContext, useEffect, useState } from "react";
-import useLocalStorage from "@hooks/useLocalStorage";
+import useLocalStorage from "@/hooks/useLocalStorage";
 const ApplicationShellContext = createContext<any>(null);
 
 export const ApplicationShellProvider = ({ children }: any) => {

@@ -10,7 +10,6 @@
     "preview": "vite preview",
     "build:css": "postcss src/styles/tailwind.css -o src/styles/output.css",
     "server": "nodemon server/index.js",
-    "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
     "start": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
@@ -21,13 +20,14 @@
     "express": "^4.21.1",
     "flowbite": "^2.3.0",
     "nanoid": "^4.0.2",
+    "openai": "^4.73.1",
     "postcss": "^8.4.38",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.1",
     "react-transition-group": "^4.4.5",
     "sass": "^1.62.1",
-    "shadcn-ui": "^0.9.3",
+    "shadcn-ui": "^0.2.3",
     "tailwindcss": "^3.4.4",
     "uuid": "^11.0.3"
   },

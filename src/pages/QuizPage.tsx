@@ -38,7 +38,7 @@ export default function QuizPage() {
         const response = await fetch(`http://localhost:${PORT}/api/quiz/${id}`);
         data = await response.json();
       } else if (id === "default") {
-        data = await import("@data/defaultQuestions.json");
+        data = await import("@/data/defaultQuestions.json");
       } else {
         console.log("No ID");
         navigate("/");
@@ -57,7 +57,12 @@ export default function QuizPage() {
     fetchQuiz();
   }, [id, isRandom]);
 
-  if (!quizData) return <div>Loading...</div>;
+  if (!quizData)
+    return (
+      <div className="flex justify-center items-center h-screen w-full text-2xl">
+        <p className="text-gray-500 dark:text-gray-400">Loading...</p>
+      </div>
+    );
 
   const currentQuestion = quizData.questions[currentQuestionIndex];
   const progress =
@@ -99,7 +104,8 @@ export default function QuizPage() {
             Question {currentQuestionIndex + 1} of {quizData.questions.length}
           </h2>
           <div className="text-gray-900 dark:text-white">
-            Score: {score}/{currentQuestionIndex + 1}
+            Score: {score}/{quizData.questions.length} (
+            {Math.round((score / quizData.questions.length) * 100)}%)
           </div>
         </div>
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
@@ -121,10 +127,12 @@ export default function QuizPage() {
               <button
                 key={index}
                 className={`w-full text-left px-4 py-3 rounded-lg ${
-                  selectedAnswer === choice
+                  selectedAnswer
                     ? choice === currentQuestion.answer
-                      ? "bg-green-500 dark:bg-green-600 text-white"
-                      : "bg-red-500 dark:bg-red-600 text-white"
+                      ? "bg-green-500 dark:bg-green-600 text-white" // Always green for correct
+                      : selectedAnswer === choice
+                      ? "bg-red-500 dark:bg-red-600 text-white" // Red only for selected wrong
+                      : "bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
                     : "bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                 }`}
                 onClick={() => handleAnswer(choice)}
@@ -169,12 +177,20 @@ export default function QuizPage() {
             Final Score: {score}/{quizData.questions.length} (
             {Math.round((score / quizData.questions.length) * 100)}%)
           </p>
-          <button
-            className="w-full px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600"
-            onClick={restartQuiz}
-          >
-            Restart Quiz
-          </button>
+          <div className="flex flex-col space-y-2">
+            <button
+              className="w-full px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600"
+              onClick={restartQuiz}
+            >
+              Restart Quiz
+            </button>
+            <button
+              className="w-full px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600"
+              onClick={() => navigate("/")}
+            >
+              Go Home
+            </button>
+          </div>
         </div>
       )}
     </div>

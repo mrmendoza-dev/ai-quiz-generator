@@ -1,6 +1,6 @@
-import { icons } from "@assets/icons";
+import { icons } from "@/assets/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useThemeToggle from "@hooks/useThemeToggle";
+import useThemeToggle from "@/hooks/useThemeToggle";
 
 const ThemeToggle = () => {
   const { isDarkMode, toggleTheme } = useThemeToggle();

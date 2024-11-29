@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import HomePage from "@pages/HomePage";
-import QuizPage from "@components/QuizPage";
+import HomePage from "@/pages/HomePage";
+import QuizPage from "@/pages/QuizPage";
 
 function Main() {
 

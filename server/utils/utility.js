@@ -5,8 +5,6 @@ export function generateUnixTimestamp() {
   return Math.floor(date.getTime() / 1000);
 }
 
-
-
 export async function ensureDirectoryExists(dirPath) {
   try {
     await fs.access(dirPath);
