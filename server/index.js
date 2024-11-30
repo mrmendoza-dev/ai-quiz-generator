@@ -2,7 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 
-import routes from './routes/index.js'  // or wherever your routes are
+import routes from './routes/index.js'
 
 
 dotenv.config();
@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', routes)  // All routes under /api
+app.use('/api', routes)
 
 
 

@@ -1,16 +1,15 @@
 import express from "express";
 import fs from "fs/promises";
 import path from "path";
-import { generateUnixTimestamp, ensureDirectoryExists } from "../utils/utility.js";
 import { v4 as uuidv4 } from "uuid";
-import OpenAI from "openai";
-import dotenv from "dotenv";
-
-dotenv.config();
+import {
+  generateUnixTimestamp,
+  ensureDirectoryExists,
+} from "../utils/index.js";
+import { fetchGPTResponse } from "../services/index.js";
 
 
 const router = express.Router();
-
 
 // Basic health check
 router.get("/", (req, res) => {
@@ -69,7 +68,6 @@ router.get("/quiz/:id", async (req, res) => {
   }
 });
 
-
 router.post("/quiz/generate", async (req, res) => {
   const { topic, numQuestions, difficulty } = req.body;
 
@@ -115,7 +113,7 @@ router.post("/quiz/generate", async (req, res) => {
   }
 
   try {
-  const systemInstruction = `You are a quiz generator. You are given a topic, a number of questions, and a difficulty. 
+    const systemInstruction = `You are a quiz generator. You are given a topic, a number of questions, and a difficulty. 
   You need to generate a quiz with the given topic, number of questions, and difficulty.
   
 1. Answer-First Approach:
@@ -164,13 +162,12 @@ router.post("/quiz/generate", async (req, res) => {
       }
     ]
   }.`;
-  const userInstruction = `Topic: ${topic}, Number of Questions: ${numQuestions}, Difficulty: ${difficulty}`;
+    const userInstruction = `Topic: ${topic}, Number of Questions: ${numQuestions}, Difficulty: ${difficulty}`;
 
     const gptResponse = await fetchGPTResponse(
       systemInstruction,
       userInstruction
     );
-
 
     // Validate GPT response
     if (!gptResponse || typeof gptResponse !== "object") {
@@ -255,58 +252,4 @@ router.post("/quiz/generate", async (req, res) => {
   }
 });
 
-
-
-
-
 export default router;
-
-
-
-
-
-const openai = new OpenAI({
-  organization: process.env.VITE_OPENAI_ORGANIZATION,
-  project: process.env.VITE_OPENAI_PROJECT,
-  apiKey: process.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
-
-
-const fetchGPTResponse = async (
-  systemInstruction,
-  userInstruction,
-  model = "gpt-4o-mini"
-) => {
-  try {
-    const response = await openai.chat.completions.create({
-      model: model,
-      messages: [
-        { role: "system", content: systemInstruction },
-        { role: "user", content: userInstruction },
-      ],
-      max_tokens: 2000,
-      response_format: {
-        type: "json_object",
-      },
-    });
-
-    console.log(response);
-
-    const gptResponse = response.choices[0].message.content;
-    console.log(gptResponse);
-    const jsonObject = JSON.parse(gptResponse);
-    console.log(jsonObject);
-
-    if (jsonObject === null) {
-      console.error("Error parsing JSON object");
-      return { error: "Error parsing JSON object." };
-    } else {
-      return jsonObject;
-    }
-  } catch (error) {
-    console.error("Error generating response:", error);
-    return { error: `Error generating response: ${error}` };
-  }
-};
-
