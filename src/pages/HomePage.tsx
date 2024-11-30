@@ -80,6 +80,15 @@ function QuizGeneratorForm({ fetchQuizzes }: { fetchQuizzes: () => void }) {
     generateQuiz();
   };
 
+
+  const resetForm = () => {
+    setFormData({
+      topicDescription: "",
+      numQuestions: 5,
+      difficulty: "mixed",
+    });
+  };
+
   const generateQuiz = async () => {
     setIsLoading(true);
     try {
@@ -95,8 +104,8 @@ function QuizGeneratorForm({ fetchQuizzes }: { fetchQuizzes: () => void }) {
           }),
         }
       );
-      const quiz = await response.json();
       fetchQuizzes();
+      resetForm();
     } catch (error) {
       console.error("Error generating quiz:", error);
     } finally {
