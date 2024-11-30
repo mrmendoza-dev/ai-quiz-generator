@@ -1,4 +1,1 @@
-
-import utility from "./utility.js";
-
-export { utility };
+export * from "./utility.js";

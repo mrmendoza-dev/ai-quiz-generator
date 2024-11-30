@@ -16,7 +16,12 @@ const HomePage = () => {
   const fetchQuizzes = async () => {
     const response = await fetch(`http://localhost:${PORT}/api/quizzes`);
     const data = await response.json();
-    setQuizzes(data);
+
+    if (data.error) {
+      console.error(data.error);
+    } else {
+      setQuizzes(data);
+    }
   };
 
 
@@ -210,6 +215,8 @@ function QuizList({ quizzes, handleQuizSelect }: { quizzes: any, handleQuizSelec
     (a, b) => b.dateGenerated - a.dateGenerated
   );
 
+
+
   const getDifficultyColor = (difficulty: string) => {
     const colors: any = {
       easy: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
@@ -241,7 +248,7 @@ function QuizList({ quizzes, handleQuizSelect }: { quizzes: any, handleQuizSelec
         </div>
       ) : (
         <div className="space-y-3">
-          {sortedQuizzes.map((quiz, index) => (
+<>          {sortedQuizzes.map((quiz, index) => (
             <div
               key={index}
               onClick={() => handleQuizSelect(quiz.id)}
@@ -273,7 +280,7 @@ function QuizList({ quizzes, handleQuizSelect }: { quizzes: any, handleQuizSelec
                 </span>
               </div>
             </div>
-          ))}
+          ))}</>
         </div>
       )}
     </div>
