@@ -61,6 +61,7 @@ import {
   faUserSlash,
   faFileSignature,
   faQuestion,
+  faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const icons = {
@@ -119,4 +120,5 @@ export const icons = {
   faUserSlash,
   faFileSignature,
   faQuestion,
+  faCircleQuestion,
 };

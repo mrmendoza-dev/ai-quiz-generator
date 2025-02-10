@@ -35,15 +35,13 @@ const HomePage = () => {
   return (
     <div className="container mx-auto p-4 max-w-2xl flex flex-col space-y-4">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md p-6">
-        <h1 className="text-3xl font-bold text-center text-gray-900 dark:text-white">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md p-4">
+        <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white">
           AI Quiz Generator
         </h1>
       </div>
 
-
       <QuizGeneratorForm fetchQuizzes={fetchQuizzes} />
-
 
       <QuizList quizzes={quizzes} handleQuizSelect={handleQuizSelect} />
     </div>
@@ -218,7 +216,6 @@ return (
 
 
 
-
 function QuizList({ quizzes, handleQuizSelect }: { quizzes: any, handleQuizSelect: (quizId: string) => void }) {
   const sortedQuizzes = [...quizzes].sort(
     (a, b) => b.dateGenerated - a.dateGenerated
@@ -281,9 +278,10 @@ function QuizList({ quizzes, handleQuizSelect }: { quizzes: any, handleQuizSelec
                       quiz.difficulty
                     )}`}
                   >
-                    {quiz.difficulty || "mixed"}
+                    {quiz.difficulty?.charAt(0).toUpperCase() + quiz.difficulty?.slice(1)}
                   </span>
                 </div>
+
                 <span className="text-sm text-gray-500 dark:text-gray-500">
                   {quiz.length} questions
                 </span>

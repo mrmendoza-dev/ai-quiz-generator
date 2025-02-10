@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useApplicationShell } from "@/contexts/ApplicationShellContext";
 
 
+
 function Nav() {
 
       const {
@@ -25,15 +26,18 @@ function Nav() {
               <FontAwesomeIcon icon={icons.faBars} className="" />
             </button> */}
 
-            <Link to="/" className="flex items-center justify-between mr-4">
-              <img
+            <Link to="/" className="flex items-center justify-between gap-2">
+              {/* <img
                 src="/images/logo.png"
                 className="mr-1 h-8"
                 alt="Flowbite Logo"
-              />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-black">
+              /> */}
+
+              <FontAwesomeIcon icon={icons.faCircleQuestion} className="size-8 text-indigo-500" />
+              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white text-black">
                 AI Quiz Generator
               </span>
+
             </Link>
           </div>
           <div className="flex items-center lg:order-2">
