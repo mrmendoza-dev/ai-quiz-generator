@@ -1,4 +1,29 @@
-# Logs
+# ─── Dependencies ─────────────────────────────────────────
+node_modules
+
+# Optional package managers (uncomment if you use them)
+# .yarn/cache
+# .yarn/install-state.gz
+# .pnp.*
+
+# ─── Build & bundler output ───────────────────────────────
+dist
+dist-ssr
+build
+out
+*.local
+
+# Vite / tooling caches
+.vite
+*.tsbuildinfo
+
+# ─── Environment & secrets ────────────────────────────────
+.env
+.env.*
+!.env.example
+!.env*.example
+
+# ─── Logs ─────────────────────────────────────────────────
 logs
 *.log
 npm-debug.log*
@@ -7,21 +32,32 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-.env
+# ─── Tests & coverage ───────────────────────────────────
+coverage
+.nyc_output
+*.lcov
 
-# Editor directories and files
+# ─── Lint / typecheck caches ──────────────────────────────
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# ─── OS ───────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ─── Editors & IDEs ───────────────────────────────────────
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
+# ─── Project-specific ─────────────────────────────────────
 data/generated/*
