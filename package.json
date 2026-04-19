@@ -19,7 +19,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.22.1",
     "flowbite": "^2.3.0",
-    "nanoid": "^4.0.2",
+    "nanoid": "^5.1.9",
     "openai": "^4.73.1",
     "postcss": "^8.4.38",
     "react": "^18.2.0",
